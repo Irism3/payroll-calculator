@@ -14,13 +14,14 @@ public class main {
         System.out.print("Please enter pay rate: ");
         double payRate = input.nextDouble();
 
+        // multiply both hours and payrate to see the grosspay
         double grossPay = hoursWorked * payRate;
 
         //System.out.println("name "+ name);
        // System.out.println("grossPay "+ grossPay);
         input.close();
 
-        System.out.print("name "+ name + " grossPay "+ grossPay);
+        System.out.print("name "+ name + " grossPay: "+ grossPay);
 
 
 
