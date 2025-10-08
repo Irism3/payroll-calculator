@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class main2 {
     public static void main(String[] args) throws FileNotFoundException {
@@ -9,16 +6,15 @@ public class main2 {
         // id| name | hours worked | pay rate
         //  0 | 1   |     2        |     3
 
-        try {
+        try (FileWriter writer = new FileWriter("src/main/resources/payroll.json");) {
             FileReader fileReader = new FileReader("src/main/resources/employees.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 
             bufferedReader.readLine();
-            String employees;
 
-            while ((employees = bufferedReader.readLine()) != null) {
-                String input = bufferedReader.readLine();
+            String input;
+            while ((input = bufferedReader.readLine()) != null) {
                 String[] sections = input.split("\\|");
 
 
@@ -28,6 +24,7 @@ public class main2 {
                 double hourlyRate = Double.parseDouble(sections[3]);
                 Employee employee = new Employee(employeeId, name, hoursWorked, hourlyRate);
                 System.out.println(employeeId + " " + employee.getName() + " " + employee.getGrosspay());
+                writer.write("Employee name" + employee.getName() + " " + employee.getGrosspay() + "\n");
 
             }
 
